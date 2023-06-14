@@ -3,15 +3,16 @@ import React from "react";
 interface InputProp {
   name: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  value?: string;
+  inputValue?: string;
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
-const Input = ({ name, onChange } : InputProp) => {
-  
+const Input = ({ name, onChange, onBlur} : InputProp) => {
+
 
   return (
     <div>
-      <label htmlFor=""></label>
-      <input name={name} onChange={onChange} type="text" className="form-control"/>
+      <label htmlFor={name}>{name}</label>
+      <input id={name} name={name} onBlur={onBlur} onChange={onChange} type="text" className="form-control"/>
     </div>
   );
 };

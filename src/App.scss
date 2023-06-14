@@ -1,6 +1,18 @@
 // Import Bootstrap to access its variables and mixins
 @import "~bootstrap/scss/bootstrap";
 
+html {
+  font-size: 16px;
+}
+
 .App {
   text-align: center;
+
+  label {
+    font-size: 2rem;
+    margin-bottom: 0.2em;
+  }
+  .btn-primary {
+    margin-top: 0.5em;
+  }
 }
