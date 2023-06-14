@@ -25,7 +25,7 @@ setInputValues({...inputValues,[name]:value})
 }; 
 
   return (
-    <main>
+    <main className="container">
       <form action="#">
         <Input name ="name" onChange={onChangeHandler}/>
         <h1>{inputValues.name}</h1>

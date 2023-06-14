@@ -11,7 +11,7 @@ const Input = ({ name, onChange } : InputProp) => {
   return (
     <div>
       <label htmlFor=""></label>
-      <input name={name} onChange={onChange} type="text" />
+      <input name={name} onChange={onChange} type="text" className="form-control"/>
     </div>
   );
 };
