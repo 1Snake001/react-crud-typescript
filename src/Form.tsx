@@ -20,13 +20,23 @@ const Form = () => {
 
   // error checker function
   function isFirstLetterCapitalize(value: string) {
-  const arrayOffirstAndLastName = value.split(" ");
-  const isValidInput = arrayOffirstAndLastName.some(value => value.charAt(0) !== value.charAt(0).toUpperCase());
+    const arrayOffirstAndLastName = value.split(" ");
+  let firstLetter  =  (name:string) => name.charAt(0) !== name.charAt(0).toUpperCase()
+    const isValidInput = arrayOffirstAndLastName.some(
+      firstLetter
+    );
 
-  return !isValidInput;
+    return !isValidInput;
   }
 
   isFirstLetterCapitalize("John Doe");
+
+  function isIncludeFirtAndLastName(value: string) {
+    const arrayOffirstAndLastName = value.split(" ");
+    return arrayOffirstAndLastName.length > 1;
+  };
+
+  isIncludeFirtAndLastName("John Doe");
 
   // Object with functions wich have keys wich call to the error checker functions
 
