@@ -16,6 +16,20 @@ const Form = () => {
 
   const [isValid, setIsValid] = useState(false);
 
+  // Text for error messages
+
+  // error checker function
+  function isFirstLetterCapitalize(value: string) {
+  const arrayOffirstAndLastName = value.split(" ");
+  const isValidInput = arrayOffirstAndLastName.some(value => value.charAt(0) !== value.charAt(0).toUpperCase());
+
+  return !isValidInput;
+  }
+
+  isFirstLetterCapitalize("John Doe");
+
+  // Object with functions wich have keys wich call to the error checker functions
+
   function validator(value: string) {
     if (value === "") {
       setIsValid(false);
@@ -24,28 +38,27 @@ const Form = () => {
     setIsValid(true);
   }
 
-  function onBlurHandler(event:React.FocusEvent<HTMLInputElement>) {
+  function onBlurHandler(event: React.FocusEvent<HTMLInputElement>) {
     const value = event.target.value;
-    /* validator(value); */
+    validator(value);
   }
-  
+
   function formValidator() {
     Object.values(inputValues).map((input) => validator(input));
   }
-  
+
   function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setInputValues({ ...inputValues, [name]: value });
   }
-  
+
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     formValidator();
-    console.log(isValid);
-    if(isValid){
-      console.log(inputValues);
+
+    if (isValid) {
     }
-  };
+  }
   return (
     <main className="container">
       <form onSubmit={submitHandler} action="#" noValidate>
@@ -59,9 +72,13 @@ const Form = () => {
 
         <button className="btn btn-primary">Submit</button>
       </form>
-      {isValid && <ul>{Object.values(inputValues).map((value, i) =>(
-        <li key={i}>{value}</li>
-      ))}</ul>}
+      {isValid && (
+        <ul>
+          {Object.values(inputValues).map((value, i) => (
+            <li key={i}>{value}</li>
+          ))}
+        </ul>
+      )}
     </main>
   );
 };
