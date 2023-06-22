@@ -30,21 +30,25 @@ const Form = () => {
 
   isFirstLetterCapitalize("John Doe");
 
-  function isIncludeFirtAndLastName(value: string) {
+  function isIncludeFirstAndLastName(value: string) {
     const arrayOffirstAndLastName = value.split(" ");
     return arrayOffirstAndLastName.length > 1;
   }
 
-  isIncludeFirtAndLastName("John Doe");
+  isIncludeFirstAndLastName("John Doe");
 
 
   function lessThanTwentyFive(value:string){
      return value.length < 25;
   }
 
-  console.log(lessThanTwentyFive("Kiss László Elemér"));
-  
+lessThanTwentyFive("Kiss László Elemér");
 
+  function isNotEmpty(value:string){
+     return value !== '';
+  };
+
+isNotEmpty('');
   // Object with functions wich have keys wich call to the error checker functions
 
   function validator(value: string) {
