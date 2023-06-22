@@ -49,13 +49,23 @@ const Form = () => {
 
   isNotEmpty("");
 
-  function validateEmail(email:string) {
-    const emailRegex = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*$/;
+  function validateEmail(email: string) {
+    const emailRegex =
+      /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*$/;
     return emailRegex.test(email);
   }
 
- validateEmail("value@gmail.com");
-  
+  validateEmail("value@gmail.com");
+
+  function isTheFirstPostalCode(value: string) {
+    const arrayOffAddress = value.split(" ");
+    let firstValue = arrayOffAddress[0];
+
+    return !isNaN(Number(firstValue)) && firstValue.length === 4;
+  }
+
+  isTheFirstPostalCode("2221 Kecskemét");
+
   // Object with functions wich have keys wich call to the error checker functions
 
   function validator(value: string) {
