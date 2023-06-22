@@ -37,18 +37,25 @@ const Form = () => {
 
   isIncludeFirstAndLastName("John Doe");
 
-
-  function lessThanTwentyFive(value:string){
-     return value.length < 25;
+  function lessThanTwentyFive(value: string) {
+    return value.length < 25;
   }
 
-lessThanTwentyFive("Kiss László Elemér");
+  lessThanTwentyFive("Kiss László Elemér");
 
-  function isNotEmpty(value:string){
-     return value !== '';
-  };
+  function isNotEmpty(value: string) {
+    return value !== "";
+  }
 
-isNotEmpty('');
+  isNotEmpty("");
+
+  function validateEmail(email:string) {
+    const emailRegex = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*$/;
+    return emailRegex.test(email);
+  }
+
+ validateEmail("value@gmail.com");
+  
   // Object with functions wich have keys wich call to the error checker functions
 
   function validator(value: string) {
