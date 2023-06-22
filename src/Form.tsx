@@ -21,10 +21,9 @@ const Form = () => {
   // error checker function
   function isFirstLetterCapitalize(value: string) {
     const arrayOffirstAndLastName = value.split(" ");
-  let firstLetter  =  (name:string) => name.charAt(0) !== name.charAt(0).toUpperCase()
-    const isValidInput = arrayOffirstAndLastName.some(
-      firstLetter
-    );
+    let firstLetter = (name: string) =>
+      name.charAt(0) !== name.charAt(0).toUpperCase();
+    const isValidInput = arrayOffirstAndLastName.some(firstLetter);
 
     return !isValidInput;
   }
@@ -34,9 +33,17 @@ const Form = () => {
   function isIncludeFirtAndLastName(value: string) {
     const arrayOffirstAndLastName = value.split(" ");
     return arrayOffirstAndLastName.length > 1;
-  };
+  }
 
   isIncludeFirtAndLastName("John Doe");
+
+
+  function lessThanTwentyFive(value:string){
+     return value.length < 25;
+  }
+
+  console.log(lessThanTwentyFive("Kiss László Elemér"));
+  
 
   // Object with functions wich have keys wich call to the error checker functions
 
