@@ -68,6 +68,22 @@ const Form = () => {
 
   // Object with functions wich have keys wich call to the error checker functions
 
+const validtors = {
+  name: {
+    emptyValueChecker:isNotEmpty,
+    capitalizeChecker:isFirstLetterCapitalize,
+    firstAndLastNameChecker:isIncludeFirstAndLastName,
+    lessThanTwentyFiveChecker:lessThanTwentyFive
+  },
+    email: {
+
+    },
+    address:{
+
+    }
+}
+
+
   function validator(value: string) {
     if (value === "") {
       setIsValid(false);
