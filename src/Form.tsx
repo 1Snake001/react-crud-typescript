@@ -35,8 +35,6 @@ const Form = () => {
 
     const isEmpty = arrayOffirstAndLastName.some(isNotSpace);
 
-    console.log(arrayOffirstAndLastName);
-
     return !isValidInput &&  !isEmpty;
   }
 

@@ -13,8 +13,8 @@ const Input = ({ name, errorMessage, onChange, onBlur} : InputProp) => {
   return (
     <div>
       <label htmlFor={name}>{name}</label>
-      <input id={name} name={name} onBlur={onBlur} onChange={onChange} type="text" className="form-control"/>
-      <div>{errorMessage}</div>
+      <input id={name} name={name} onBlur={onBlur} onChange={onChange} type="text" className={`form-control ${errorMessage ? "border border-danger" : ''}`}/>
+      <div className="text-danger">{errorMessage}</div>
     </div>
   );
 };
