@@ -1,11 +1,13 @@
 import React from "react";
 import "./style/App.scss";
 import Form from "./components/Form";
+import Table from "./components/Table";
 
 function App() {
   return (
     <div className="App">
       <Form />
+      <Table/>
     </div>
   );
 }

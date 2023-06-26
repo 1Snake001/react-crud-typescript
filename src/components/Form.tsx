@@ -146,7 +146,7 @@ const Form = () => {
     setIsFormValid(false);
 
     if (isValid) {
-      console.log(isValid);
+      console.log(inputValues);
       setIsFormValid(true);
     }
   }
