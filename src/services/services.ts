@@ -1,5 +1,5 @@
 import { db } from "../firebase-config/firebase";
-import { collection, addDoc, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs} from "firebase/firestore";
 
 const userRef = collection(db, "users");
 
@@ -9,7 +9,7 @@ interface InputValue {
     address: string;
   }
 
-class UserService {
+class UserServices {
   getAllUsers = async () => {
     return await getDocs(userRef);
   };
@@ -19,4 +19,4 @@ class UserService {
   }
 };
 
-export default UserService;
+export default UserServices;

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Input from "./Input";
+import UserServices from "../services/services";
+
+const userServices = new UserServices();
 
 const Form = () => {
   interface InputValue {
@@ -20,7 +23,6 @@ const Form = () => {
     address: "",
   });
   const [isValid, setIsValid] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
   const [isSubmitButtonHovered, setIsSubmitButtonHovered] = useState(false);
   // Text for error messages
 
@@ -143,11 +145,16 @@ const Form = () => {
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     formValidator();
-    setIsFormValid(false);
+
 
     if (isValid) {
-      console.log(inputValues);
-      setIsFormValid(true);
+     userServices.addNewUser(inputValues);
+     setInputValues({
+      name: "",
+      email: "",
+      address: "",
+    });
+ 
     }
   }
 
@@ -159,8 +166,6 @@ const Form = () => {
     setIsSubmitButtonHovered(false);
   }
 
-  let isHasError = !Object.values(errorMessages).some((value) => value !== "");
-
   return (
     <main className="container">
       <form onSubmit={submitHandler} action="#" noValidate>
@@ -169,18 +174,21 @@ const Form = () => {
           onBlur={onBlurHandler}
           onChange={onChangeHandler}
           errorMessage={errorMessages.name}
-        />
+          inputValue= {inputValues.name}
+          />
         <Input
           name="email"
           onBlur={onBlurHandler}
           onChange={onChangeHandler}
           errorMessage={errorMessages.email}
-        />
+          inputValue= {inputValues.email}
+          />
         <Input
           name="address"
           onBlur={onBlurHandler}
           onChange={onChangeHandler}
           errorMessage={errorMessages.address}
+          inputValue= {inputValues.address}
         />
 
         <button
@@ -191,14 +199,6 @@ const Form = () => {
           Submit
         </button>
       </form>
-
-      {isHasError && isFormValid && (
-        <ul>
-          {Object.values(inputValues).map((value, i) => (
-            <li key={i}>{value}</li>
-          ))}
-        </ul>
-      )}
     </main>
   );
 };

@@ -7,13 +7,13 @@ interface InputProp {
   inputValue?: string;
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
-const Input = ({ name, errorMessage, onChange, onBlur} : InputProp) => {
+const Input = ({ name, errorMessage, onChange, onBlur, inputValue} : InputProp) => {
 
 
   return (
     <div>
       <label htmlFor={name}>{name}</label>
-      <input id={name} name={name} onBlur={onBlur} onChange={onChange} type="text" className={`form-control ${errorMessage ? "border border-danger" : ''}`}/>
+      <input id={name} name={name} value={inputValue} onBlur={onBlur} onChange={onChange} type="text" className={`form-control ${errorMessage ? "border border-danger" : ''}`}/>
       <div className="text-danger">{errorMessage}</div>
     </div>
   );
