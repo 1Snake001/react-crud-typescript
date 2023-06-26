@@ -9,14 +9,27 @@ interface InputValue {
     address: string;
   }
 
-class UserServices {
-  getAllUsers = async () => {
-    return await getDocs(userRef);
-  };
-
-  addNewUser = async (newUser:InputValue) => {
-    return await addDoc(userRef, newUser);
+  class UserServices {
+    getAllUsers = async () => {
+      try {
+        return await getDocs(userRef);
+      } catch (error) {
+        // Handle the error
+        console.error('Error getting all users:', error);
+        throw error;
+      }
+    };
+  
+    addNewUser = async (newUser: InputValue) => {
+      try {
+        return await addDoc(userRef, newUser);
+      } catch (error) {
+        // Handle the error
+        console.error('Error adding a new user:', error);
+        throw error;
+      }
+    };
   }
-};
+  
 
 export default UserServices;
