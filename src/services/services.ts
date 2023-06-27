@@ -4,6 +4,7 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
+  updateDoc,
   doc,
 } from "firebase/firestore";
 
@@ -36,6 +37,7 @@ class UserServices {
       throw error;
     }
   };
+
   deleteUser = async (id: string) => {
     try {
       const userDoc = doc(userRef, id);
@@ -45,6 +47,11 @@ class UserServices {
       console.error("Error adding a new user:", error);
       throw error;
     }
+  };
+
+  updateUser = async (id: string, updatedUser: any) => {
+    const userDoc = doc(userRef, id);
+    return await updateDoc(userDoc, updatedUser);
   };
 }
 
