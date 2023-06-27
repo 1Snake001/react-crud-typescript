@@ -11,7 +11,7 @@ import {
 const userRef = collection(db, "users");
 
 interface InputValue {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   address: string;

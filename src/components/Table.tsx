@@ -1,33 +1,27 @@
-import React, { useEffect, useState } from "react";
+
 import UserServices from "../services/services";
 
 const userServices = new UserServices();
 
-const Table = () => {
-  interface User {
-    id: string;
-    name: string;
-    email: string;
-    address: string;
-  }
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  address: string;
+}
 
-  const [users, setUsers] = useState<User[]>([]);
+interface TableProps {
+  users: User[];
+  getUserData(): Promise<void>
+}
 
-  useEffect(() => {
-    async function getUserData() {
-      const data = await userServices.getAllUsers();
+const Table: React.FC<TableProps > = ({users, getUserData}) => {
 
-      let users = data.docs.map((doc) => ({
-        ...(doc.data() as User),
-        id: doc.id,
-      }));
 
-      setUsers(users);
-    }
+  const deleteUser = async (id: string) => {
+    await userServices.deleteUser(id);
     getUserData();
-  }, []);
-
-  console.log(users);
+  };
 
   return (
     <table className="table table-striped container">
@@ -47,7 +41,12 @@ const Table = () => {
               <td>{user.address}</td>
               <td>
                 <button className="btn btn-success btn-sm">Update</button>
-                <button className="btn btn-danger btn-sm">Delete</button>
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => deleteUser(user.id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
