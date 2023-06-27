@@ -45,6 +45,7 @@ const Table = () => {
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.address}</td>
+              <td><button className="btn btn-success btn-sm">Update</button><button className="btn btn-danger btn-sm">Delete</button></td>
             </tr>
           ))}
         </tbody>
