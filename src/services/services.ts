@@ -2,6 +2,7 @@ import { db } from "../firebase-config/firebase";
 import {
   collection,
   addDoc,
+  getDoc,
   getDocs,
   deleteDoc,
   updateDoc,
@@ -52,6 +53,21 @@ class UserServices {
   updateUser = async (id: string, updatedUser: any) => {
     const userDoc = doc(userRef, id);
     return await updateDoc(userDoc, updatedUser);
+  };
+
+  getUserById = async (id: string) => {
+    try {
+      const userDoc = await getDoc(doc(userRef, id));
+      if (userDoc.exists()) {
+        return userDoc.data();
+      } else {
+        throw new Error("User not found");
+      }
+    } catch (error) {
+      // Handle the error
+      console.error("Error getting user by ID:", error);
+      throw error;
+    }
   };
 }
 
