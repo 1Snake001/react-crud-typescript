@@ -10,23 +10,29 @@ interface InputValue {
   address: string;
 }
 
-interface FormProps {
-  getUserData(): Promise<void>
+export interface FormProps {
+  getUserData(): Promise<void>;
+  type?: string;
+  inputValues: InputValue;
+  setInputValues: any;
+  id?: string | undefined;
+  user?: any;
 }
 
-const Form: React.FC<FormProps> = ({getUserData}) => {
-
-  const [inputValues, setInputValues] = useState<InputValue>({
-    name: "",
-    email: "",
-    address: "",
-  });
-
+const Form: React.FC<FormProps> = ({
+  getUserData,
+  inputValues,
+  setInputValues,
+  type,
+  id,
+  user,
+}) => {
   const [errorMessages, setErrorMessages] = useState({
     name: "",
     email: "",
     address: "",
   });
+
   const [isValid, setIsValid] = useState(false);
   const [isSubmitButtonHovered, setIsSubmitButtonHovered] = useState(false);
   // Text for error messages
@@ -38,11 +44,11 @@ const Form: React.FC<FormProps> = ({getUserData}) => {
       name.charAt(0) !== name.charAt(0).toUpperCase();
     const isValidInput = arrayOffirstAndLastName.some(firstLetter);
 
-    let isNotSpace = (name: string) => name === '';
+    let isNotSpace = (name: string) => name === "";
 
     const isEmpty = arrayOffirstAndLastName.some(isNotSpace);
 
-    return !isValidInput &&  !isEmpty;
+    return !isValidInput && !isEmpty;
   }
 
   function isIncludeFirstAndLastName(value: string) {
@@ -151,16 +157,30 @@ const Form: React.FC<FormProps> = ({getUserData}) => {
     event.preventDefault();
     formValidator();
 
+    const isFormValid = Object.values(errorMessages).every((errorMsg) => !errorMsg);
 
-    if (isValid) {
-     userServices.addNewUser(inputValues);
-     setInputValues({
-      name: "",
-      email: "",
-      address: "",
-    });
-    getUserData();
+    if (isFormValid) {
+      if (type === "edit") {
+        if (id !== undefined) {          
+          userServices.updateUser(id,inputValues);
+          setInputValues({
+            name: "",
+            email: "",
+            address: "",
+          });
+          getUserData();
+        }
+      } else {
+        userServices.addNewUser(inputValues);
+        setInputValues({
+          name: "",
+          email: "",
+          address: "",
+        });
+        getUserData();
+      }
     }
+    
   }
 
   function handleSubmitButtonHover() {
@@ -179,21 +199,21 @@ const Form: React.FC<FormProps> = ({getUserData}) => {
           onBlur={onBlurHandler}
           onChange={onChangeHandler}
           errorMessage={errorMessages.name}
-          inputValue= {inputValues.name}
-          />
+          inputValue={inputValues.name}
+        />
         <Input
           name="email"
           onBlur={onBlurHandler}
           onChange={onChangeHandler}
           errorMessage={errorMessages.email}
-          inputValue= {inputValues.email}
-          />
+          inputValue={inputValues.email}
+        />
         <Input
           name="address"
           onBlur={onBlurHandler}
           onChange={onChangeHandler}
           errorMessage={errorMessages.address}
-          inputValue= {inputValues.address}
+          inputValue={inputValues.address}
         />
 
         <button
