@@ -1,23 +1,9 @@
 import React, { useState } from "react";
 import Input from "./Input";
 import UserServices from "../services/services";
-
+import { FormProps } from "../types/FormTypes";
 const userServices = new UserServices();
 
-interface InputValue {
-  name: string;
-  email: string;
-  address: string;
-}
-
-export interface FormProps {
-  getUserData(): Promise<void>;
-  type?: string;
-  inputValues: InputValue;
-  setInputValues: any;
-  id?: string | undefined;
-  user?: any;
-}
 
 const Form: React.FC<FormProps> = ({
   getUserData,

@@ -5,19 +5,8 @@ import Table from "./components/Table";
 import UserServices from "./services/services";
 import NewForm from "./components/NewForm";
 import UpdateForm from "./components/UpdateForm";
+import { User, InputValue } from "./types/AppTypes";
 const userServices = new UserServices();
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  address: string;
-}
-interface InputValue {
-  name: string;
-  email: string;
-  address: string;
-}
 
 function App() {
   const [users, setUsers] = useState<User[]>([]);

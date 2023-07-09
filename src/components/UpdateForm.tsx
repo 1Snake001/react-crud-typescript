@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Form from "./Form";
-import { FormProps } from "./Form";
+import { FormProps } from "../types/FormTypes";
 import UserServices from "../services/services";
 
 const UpdateForm: React.FC<FormProps> = ({

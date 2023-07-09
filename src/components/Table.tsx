@@ -1,20 +1,7 @@
 import UserServices from "../services/services";
 import { Link } from "react-router-dom";
-
+import { User, TableProps } from "../types/TableTypes";
 const userServices = new UserServices();
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  address: string;
-}
-
-interface TableProps {
-  users: User[];
-  getUserData(): Promise<void>;
-  setInputValues: any;
-}
 
 const Table: React.FC<TableProps> = ({
   users,

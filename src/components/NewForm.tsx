@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from './Form'
-import { FormProps } from './Form'
+import { FormProps } from "../types/FormTypes"
 
 const NewForm:React.FC<FormProps> = ({getUserData, inputValues, setInputValues}) => {
   return (
@@ -10,4 +10,4 @@ const NewForm:React.FC<FormProps> = ({getUserData, inputValues, setInputValues})
   )
 }
 
-export default NewForm
+export default NewForm;
